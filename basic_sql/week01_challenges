@@ -9,3 +9,9 @@ How many actors have a first name that starts with the "P" letter?
 
 SELECT COUNT (*) FROM actor 
 WHERE first_name LIKE 'P%';
+
+-QUESTION 3-
+how many unique districts are our customers from?
+
+SELECT COUNT (DISTINCT(district)) 
+FROM address;

@@ -3,3 +3,9 @@ How many transactions were greater than $5.00?
 
 SELECT COUNT (amount) FROM payment
 WHERE amount > 5;
+
+-QUESTION 2-
+How many actors have a first name that starts with the "P" letter?
+
+SELECT COUNT (*) FROM actor 
+WHERE first_name LIKE 'P%';

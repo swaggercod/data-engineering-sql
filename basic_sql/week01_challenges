@@ -11,7 +11,13 @@ SELECT COUNT (*) FROM actor
 WHERE first_name LIKE 'P%';
 
 -QUESTION 3-
-how many unique districts are our customers from?
+How many unique districts are our customers from?
 
 SELECT COUNT (DISTINCT(district)) 
 FROM address;
+
+-QUESTION 4-
+How many films have a rating of R and a replacement cost between $5 and $15?
+
+SELECT COUNT (rating) FROM film
+WHERE rating = 'R' AND replacement_cost BETWEEN 5 AND 15;

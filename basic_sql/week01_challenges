@@ -1,3 +1,4 @@
+-QUESTION 1-
 How many transactions were greater than $5.00?
 
 SELECT COUNT (amount) FROM payment

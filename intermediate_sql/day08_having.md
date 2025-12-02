@@ -1,6 +1,6 @@
-Day 08 — HAVING Clause
+#Day 08 — HAVING Clause
 
-What I learned today
+##What I learned today
 The HAVING clause is used to filter groups created by the GROUP BY clause.
 
 It is the only filtering clause that can directly apply conditions to the results of aggregate functions (like COUNT(), SUM(), AVG(), etc.).

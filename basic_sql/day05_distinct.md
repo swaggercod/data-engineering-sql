@@ -1,5 +1,5 @@
-Day 5 — DISTINCT
-What I learned today
+# Day 5 — DISTINCT
+## What I learned today
 
 DISTINCT removes duplicate values.
 

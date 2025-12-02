@@ -1,42 +1,49 @@
+Day 08 — HAVING Clause
+What I learned today
+The HAVING clause is used to filter groups created by the GROUP BY clause.
 
-Day 08 Summary: The HAVING Clause (PostgreSQL/SQL)
-The HAVING clause is a fundamental tool in SQL used specifically for filtering groups that have been created using the GROUP BY clause. It is the primary way to apply conditions to the results of aggregate functions like SUM(), AVG(), or COUNT().
+It is the only filtering clause that can directly apply conditions to the results of aggregate functions (like COUNT(), SUM(), AVG(), etc.).
 
- Key Function and Distinction
-The most important concept of HAVING is its distinction from the WHERE clause:
+It operates after GROUP BY has grouped the rows, unlike the WHERE clause which filters individual rows before grouping.
 
-WHERE filters individual rows before they are grouped. It cannot use aggregate functions.
-
-HAVING filters summary rows (groups) after the grouping and aggregation are complete. It can use aggregate functions.
-
- SQL Clause Execution Order
-The logical order in which the database executes a query clarifies the role of HAVING :
-
-FROM
-
-WHERE (Individual row filtering)
-
-GROUP BY (Row combination)
-
-HAVING (Group filtering)
-
-SELECT
-
-ORDER BY
-
- Example Use Case
-The HAVING clause is essential when you need to pose a question about the summarized data.
-
-Goal: Calculate the average salary for every job title, but only display the job titles where the average salary is greater than $70,000.
-
+Notes
 ```SQL
 
+-- Basic usage: Filter groups where the COUNT(*) is greater than 5
 SELECT
-    job_title,
+    department,
+    COUNT(*) AS employee_count
+FROM
+    employees
+GROUP BY
+    department
+HAVING
+    COUNT(*) > 5;
+
+-- Filtering with an aggregate result: Only show departments with an average salary > 50000
+SELECT
+    department,
     AVG(salary) AS avg_salary
 FROM
     employees
 GROUP BY
-    job_title
-HAVING 
-    AVG(salary) > 70000;
+    department
+HAVING
+    AVG(salary) > 50000;
+
+-- Combining WHERE and HAVING:
+-- 1. WHERE filters individual employees (salary > 4000)
+-- 2. GROUP BY creates groups
+-- 3. HAVING filters the resulting groups (employee_count > 2)
+SELECT
+    department,
+    COUNT(*) AS employee_count
+FROM
+    employees
+WHERE
+    salary > 4000
+GROUP BY
+    department
+HAVING
+    COUNT(*) > 2;
+

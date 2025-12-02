@@ -6,7 +6,7 @@ DISTINCT removes duplicate values.
 It works on one or multiple columns.
 
 Useful for exploring unique categories or values.
-
+```sql
 Notes
 -- Unique departments
 SELECT DISTINCT department

@@ -1,10 +1,10 @@
 # Day 4 — ORDER BY
 
 ## What I learned today
- ORDER BY is used to sort query results.
- Default order is ASC (ascending).
- Use DESC for descending order.
- ORDER BY can sort by one or multiple columns.
+- ORDER BY is used to sort query results.
+- Default order is ASC (ascending).
+- Use DESC for descending order.
+- ORDER BY can sort by one or multiple columns.
 
 ## Notes
 ```sql

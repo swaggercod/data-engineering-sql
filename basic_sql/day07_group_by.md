@@ -1,5 +1,5 @@
-Day 7 — GROUP BY
-What I learned today
+# Day 7 — GROUP BY
+## What I learned today
 GROUP BY is used to group rows that have the same values in specified columns into summary rows.
 
 It is almost always used with aggregate functions like COUNT(), SUM(), AVG(), MAX(), and MIN() to perform calculations on each group.

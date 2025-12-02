@@ -9,8 +9,6 @@ All non-aggregate columns in the SELECT list must appear in the GROUP BY clause.
 The HAVING clause is used to filter groups based on a specified condition, unlike the WHERE clause which filters individual rows before grouping.
 
 Notes
-SQL
-
 -- Count the total number of employees in each department
 SELECT department, COUNT(*) AS employee_count
 FROM employees

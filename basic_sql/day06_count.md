@@ -1,5 +1,5 @@
-Day 6 — COUNT()
-What I learned today
+# Day 6 — COUNT()
+## What I learned today
 
 COUNT() is used to count rows.
 

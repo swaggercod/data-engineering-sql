@@ -27,3 +27,11 @@ How many films have the word Truman somewhere in the title?
 
 SELECT COUNT (*) FROM film
 WHERE title LIKE '%Truman%';
+
+-QUESTION 6-
+Corporate HQ is conducting a study on the reletionship between replacement cost and a movie MPAA rating 
+(e.g G,PG,R etc...).
+What is the average replacement cost per MPAA rating?
+
+SELECT rating,AVG(replacement_cost) FROM film
+GROUP BY rating;

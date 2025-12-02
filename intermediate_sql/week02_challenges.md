@@ -1,7 +1,6 @@
 ## -QUESTION 1-
 We are launching a platinum service our most loyal customers.
-We will assign platinum status to customers that
-have 
+We will assign platinum status to customers that have 
 40 or more transaction payments.
 What customer ids are eligible for platinum status?
 

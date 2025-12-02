@@ -1,4 +1,5 @@
 Day 08 — HAVING Clause
+
 What I learned today
 The HAVING clause is used to filter groups created by the GROUP BY clause.
 

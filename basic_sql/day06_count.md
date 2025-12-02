@@ -8,7 +8,7 @@ COUNT(column) ignores NULL values.
 COUNT(*) counts all rows.
 
 Often used with DISTINCT and GROUP BY.
-
+```sql
 Notes
 -- Count all employees
 SELECT COUNT(*)

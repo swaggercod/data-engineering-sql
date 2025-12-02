@@ -35,3 +35,14 @@ What is the average replacement cost per MPAA rating?
 
 SELECT rating,AVG(replacement_cost) FROM film
 GROUP BY rating;
+
+-QUESTION 7-
+We are running a promotion to reward our top 5 customers with cupons.
+What are the coustmer ids of the top 5 customers by total spend?
+
+SELECT customer_id, SUM(amount) FROM payment
+GROUP BY customer_id 
+ORDER BY SUM (amount) DESC
+LIMIT 5
+
+

@@ -10,7 +10,7 @@ RIGHT JOIN: Returns all rows from right table, matched rows from left
 NULL values appear when no match is found
 
 📖 Examples
-LEFT JOIN
+LEFT JOIN and RIGHT JOIN
 ```sql
 -- All employees (even without departments)
 SELECT 

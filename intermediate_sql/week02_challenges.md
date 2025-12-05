@@ -3,11 +3,11 @@ We are launching a platinum service our most loyal customers.
 We will assign platinum status to customers that have 
 40 or more transaction payments.
 What customer ids are eligible for platinum status?
-
+```sql  
 SELECT(customer_id),COUNT(*) FROM payment
 GROUP BY customer_id
 HAVING COUNT(*) >= 40;
-
+```
 ## -QUESTION 2-
 What are the customer ids of customers who have spent more than 
 100$ in payment transactions with our staff_id member 2?

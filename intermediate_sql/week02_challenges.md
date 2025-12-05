@@ -16,3 +16,12 @@ SELECT(customer_id),SUM(amount)FROM payment
 WHERE staff_id = 2
 GROUP BY customer_id
 HAVING SUM(amount)>100;
+```
+## -QUESTION 3-
+What are the emails of the customers who live in California?
+```sql
+SELECT email,district 
+FROM address
+LEFT JOIN customer ON 
+address.address_id = customer.address_id
+WHERE district = 'California'

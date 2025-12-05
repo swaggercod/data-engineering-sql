@@ -20,8 +20,7 @@ HAVING SUM(amount)>100;
 ## -QUESTION 3-
 What are the emails of the customers who live in California?
 ```sql
-SELECT email,district 
-FROM address
+SELECT email,district FROM address
 INNER JOIN customer ON 
 address.address_id = customer.address_id
 WHERE district = 'California'

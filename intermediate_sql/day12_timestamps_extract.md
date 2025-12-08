@@ -26,8 +26,9 @@ SELECT
     DATE '2024-03-15' AS specific_date,
     TIMESTAMP '2024-03-15 14:30:00' AS specific_timestamp,
     TIME '14:30:00' AS specific_time;
+```
 2. EXTRACT Function - Getting Date Parts
-sql
+```sql
 -- Extract individual components from a timestamp
 SELECT 
     rental_date,
@@ -47,8 +48,9 @@ SELECT
     EXTRACT(DOY FROM rental_date) AS day_of_year
 FROM rental
 LIMIT 5;
+```
 3. DATE_PART Function (Alternative to EXTRACT)
-sql
+```sql
 -- DATE_PART does the same thing with different syntax
 SELECT 
     rental_date,
@@ -58,8 +60,9 @@ SELECT
     DATE_PART('epoch', rental_date) AS seconds_since_1970
 FROM rental
 LIMIT 5;
+```
 4. Date Arithmetic and Intervals
-sql
+```sql
 -- Add/subtract time intervals
 SELECT 
     rental_date,
@@ -78,8 +81,9 @@ SELECT
 FROM rental
 WHERE return_date IS NOT NULL
 LIMIT 5;
+```
 5. Date Formatting with TO_CHAR
-sql
+```sql
 -- Format dates in readable ways
 SELECT 
     rental_date,
@@ -90,8 +94,9 @@ SELECT
     TO_CHAR(rental_date, 'WW') AS week_number
 FROM rental
 LIMIT 5;
+```
 6. Real-World Examples
-sql
+```sql
 -- 1. Monthly rental statistics
 SELECT 
     EXTRACT(YEAR FROM rental_date) AS year,

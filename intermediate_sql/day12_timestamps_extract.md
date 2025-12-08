@@ -1,4 +1,4 @@
-# Day 12 — Timestamps and EXTRACT in PostgreSQL
+# Day 12 — Timestamps and EXTRACT
 ## 📌 What I Learned Today
 Today I learned about timestamps and date/time functions in PostgreSQL, which are essential for working with temporal data.
 

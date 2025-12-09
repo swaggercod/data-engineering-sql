@@ -42,3 +42,10 @@ Format your answer to return back the full month name.
 ```sql
 SELECT DISTINCT(TO_CHAR(payment_date,'MONTH'))
 FROM payment
+```
+## -QUESTION 6-
+How many payments occured on a monday?
+```sql
+SELECT COUNT(*)
+FROM payment
+WHERE EXTRACT(dow FROM payment_date) = 1

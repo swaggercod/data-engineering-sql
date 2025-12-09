@@ -1,5 +1,5 @@
-Day 13 — Mathematical Functions and Operators in PostgreSQL
-📌 What I Learned Today
+# Day 13 — Mathematical Functions and Operators in PostgreSQL
+## 📌 What I Learned Today
 Today I learned about mathematical functions and operators in PostgreSQL, which are essential for numerical calculations, data analysis, and business logic.
 
 ✅ Key Points:

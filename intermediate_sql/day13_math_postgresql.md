@@ -79,8 +79,8 @@ SELECT
 -- Set seed for reproducible random numbers
 SELECT SETSEED(0.5);
 SELECT RANDOM() AS reproducible_random;
-6. Absolute Value and Sign
 ```
+6. Absolute Value and Sign
 ```sql
 SELECT 
     ABS(-15) AS absolute_value, -- 15

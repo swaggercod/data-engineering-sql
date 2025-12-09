@@ -35,3 +35,10 @@ INNER JOIN actor ON film_actor.actor_id = actor.actor_id
 INNER JOIN film ON film_actor.film_id = film.film_id
 WHERE first_name = 'Nick'
 AND last_name = 'Wahlberg'
+```
+## -QUESTION 5-
+During which months did payments occur?
+Format your answer to return back the full month name.
+```sql
+SELECT DISTINCT(TO_CHAR(payment_date,'MONTH'))
+FROM payment

@@ -15,7 +15,7 @@ FROM employees;
 -- Unique combinations of departments and job titles
 SELECT DISTINCT department, job_title
 FROM employees;
-
+```
 When to use DISTINCT
 
 When counting unique values

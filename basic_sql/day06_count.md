@@ -21,7 +21,7 @@ FROM employees;
 -- Count unique departments
 SELECT COUNT(DISTINCT department)
 FROM employees;
-
+```
 Tips
 
 COUNT(*) is the safest option.

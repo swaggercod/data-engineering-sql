@@ -19,16 +19,18 @@ SELECT
     d.department_name
 FROM employees e
 LEFT JOIN departments d ON e.department_id = d.id;
+```
 RIGHT JOIN
-sql
+```sql
 -- All departments (even without employees)
 SELECT 
     e.name,
     d.department_name
 FROM employees e
 RIGHT JOIN departments d ON e.department_id = d.id;
+```
 LEFT JOIN with WHERE
-sql
+```sql
 -- Employees without departments
 SELECT 
     e.name,

@@ -19,8 +19,9 @@ SELECT
     d.department_name
 FROM employees e
 INNER JOIN departments d ON e.department_id = d.id;
+```
 INNER JOIN with WHERE
-sql
+```sql
 -- Employees in 'Engineering' department
 SELECT 
     e.name,
@@ -28,8 +29,9 @@ SELECT
 FROM employees e
 INNER JOIN departments d ON e.department_id = d.id
 WHERE d.department_name = 'Engineering';
+```
 INNER JOIN with Multiple Conditions
-sql
+```sql
 -- Employees with specific criteria
 SELECT 
     e.name,

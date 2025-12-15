@@ -18,8 +18,9 @@ SELECT
     d.department_name
 FROM employees e
 FULL OUTER JOIN departments d ON e.department_id = d.id;
+```
 Finding Disconnected Data
-sql
+```sql
 -- Find employees without departments AND departments without employees
 SELECT 
     e.name,
@@ -27,8 +28,9 @@ SELECT
 FROM employees e
 FULL OUTER JOIN departments d ON e.department_id = d.id
 WHERE e.id IS NULL OR d.id IS NULL;
+```
 CROSS JOIN
-sql
+```sql
 -- All possible combinations
 SELECT 
     e.name,

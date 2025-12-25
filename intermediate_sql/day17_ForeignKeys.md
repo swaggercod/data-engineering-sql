@@ -1,4 +1,4 @@
-# Foreign Keys - Quick Summary
+# Day 17 — Foreign Keys 
 ## 📌 What is a Foreign Key?
 A column in one table that references another table's Primary Key
 

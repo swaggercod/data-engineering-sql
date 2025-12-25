@@ -1,4 +1,4 @@
-# Primary Keys in SQL - Complete Guide
+# Day 16 — Primary Keys in SQL 
 ## 📌 What are Primary Keys?
 A Primary Key is a UNIQUE identifier for each row in a database table. Think of it like a student ID number or social security number 
 - each one is different and identifies one specific person.

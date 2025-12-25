@@ -1,73 +1,207 @@
-# Day 1: Primary Keys in PostgreSQL
-## 📌 What I Learned TodayToday 
-I learned about primary keys in PostgreSQL, which are fundamental to database design.
-A primary key uniquely identifies each row in a table and serves as the main identifier for records.
+# Primary Keys in SQL - Complete Guide
+## 📌 What are Primary Keys?
+A Primary Key is a UNIQUE identifier for each row in a database table. Think of it like a student ID number or social security number 
+- each one is different and identifies one specific person.
 
-✅ Key Points:
-Primary keys must be unique and non-null
-Each table typically has one primary key
-They enable table relationships and joins
-Serial data type can auto-generate primary key values
-Essential for data integrity and record identification
-📖 Examples1. Understanding Primary Key Propertiessql-- Viewing a table with primary key
+✅ Key Characteristics of Primary Keys:
+UNIQUE - No duplicates allowed
+
+NOT NULL - Cannot be empty
+
+Only ONE per table - Each table has just one primary key
+
+Can be single or multiple columns (composite key)
+
+📖 Examples with Sakila Database:
+1. Check Existing Primary Keys
+```sql
+-- See all tables and their primary keys
+SELECT 
+    tc.table_name,
+    kc.column_name
+FROM information_schema.table_constraints tc
+JOIN information_schema.key_column_usage kc 
+    ON tc.constraint_name = kc.constraint_name
+WHERE tc.constraint_type = 'PRIMARY KEY'
+ORDER BY tc.table_name;
+```
+2. Common Primary Keys in Sakila:
+```sql
+-- actor table
+SELECT * FROM actor LIMIT 5;
+-- actor_id is PRIMARY KEY (1, 2, 3, ...)
+
+-- film table
+SELECT * FROM film LIMIT 5;
+-- film_id is PRIMARY KEY (1, 2, 3, ...)
+
+-- customer table
 SELECT * FROM customer LIMIT 5;
--- customer_id is marked as PK (Primary Key) in PgAdmin
--- Values: 1, 2, 3, 4, 5 (unique integers, never null)
+-- customer_id is PRIMARY KEY
+🔧 How to Create Primary Keys:
+```
+Option 1: When Creating Table
+```sql
+-- Simple primary key
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50)
+);
 
--- Why first_name can't be a primary key
-SELECT first_name, COUNT(*) 
-FROM customer 
-GROUP BY first_name 
+-- With constraint name (better practice)
+CREATE TABLE products (
+    product_id INT,
+    product_name VARCHAR(100),
+    price DECIMAL(10,2),
+    CONSTRAINT pk_products PRIMARY KEY (product_id)
+);
+
+-- Composite primary key (multiple columns)
+CREATE TABLE enrollments (
+    student_id INT,
+    course_id INT,
+    enrollment_date DATE,
+    CONSTRAINT pk_enrollments PRIMARY KEY (student_id, course_id)
+);
+```
+Option 2: Add Primary Key to Existing Table
+```sql
+-- Add primary key to existing table
+ALTER TABLE employees
+ADD CONSTRAINT pk_employees PRIMARY KEY (employee_id);
+
+-- Add composite primary key
+ALTER TABLE order_items
+ADD CONSTRAINT pk_order_items PRIMARY KEY (order_id, product_id);
+```
+🗑️ How to Remove Primary Key:
+```sql
+-- Remove primary key constraint
+ALTER TABLE table_name
+DROP CONSTRAINT pk_name;
+
+-- Example
+ALTER TABLE students
+DROP CONSTRAINT pk_students;
+```
+🔍 Find Primary Key of a Specific Table:
+```sql
+-- Method 1: Using information_schema
+SELECT 
+    kc.column_name,
+    tc.constraint_name
+FROM information_schema.table_constraints tc
+JOIN information_schema.key_column_usage kc 
+    ON tc.constraint_name = kc.constraint_name
+WHERE tc.table_name = 'customer'  -- Change table name here
+  AND tc.constraint_type = 'PRIMARY KEY';
+
+-- Method 2: Quick check
+SELECT 
+    a.attname AS column_name
+FROM pg_index i
+JOIN pg_attribute a ON a.attrelid = i.indrelid
+                    AND a.attnum = ANY(i.indkey)
+WHERE i.indrelid = 'customer'::regclass  -- Change table name
+  AND i.indisprimary;
+```
+💡 Practical Examples with Sakila:
+Example 1: Find actor by Primary Key
+```sql
+-- Using actor_id (PK) to find specific actor
+SELECT * FROM actor WHERE actor_id = 1;
+-- This is FAST because actor_id is primary key (indexed)
+```
+Example 2: Join tables using Primary Keys
+```sql
+-- actor.actor_id (PK) = film_actor.actor_id (FK)
+SELECT 
+    a.first_name,
+    a.last_name,
+    f.title
+FROM actor a
+JOIN film_actor fa ON a.actor_id = fa.actor_id  -- PK = FK
+JOIN film f ON fa.film_id = f.film_id           -- PK = FK
+WHERE a.actor_id = 1;
+```
+Example 3: Check for Duplicate Primary Keys
+```sql
+-- This should return 0 rows (no duplicates allowed)
+SELECT actor_id, COUNT(*) 
+FROM actor 
+GROUP BY actor_id 
 HAVING COUNT(*) > 1;
--- Multiple customers can have the same first name!2. Primary Key in Table Structuresql-- Example of how primary key looks in a customer table
--- customer_id (PK) | first_name | last_name | email
--- 1                | John       | Doe       | john@example.com
--- 2                | Jane       | Smith     | jane@example.com
--- 3                | John       | Wilson    | johnw@example.com
 
--- Each customer_id is unique and identifies exactly one customer
-SELECT customer_id, first_name, last_name
-FROM customer
-WHERE customer_id = 1;
--- Returns exactly one row3. Primary Key Characteristicssql-- Unique constraint: No duplicate values
-SELECT customer_id, COUNT(*) as count
-FROM customer
-GROUP BY customer_id
-HAVING COUNT(*) > 1;
--- Returns 0 rows (no duplicates exist)
+-- Try to insert duplicate (will fail)
+INSERT INTO actor (actor_id, first_name, last_name)
+VALUES (1, 'John', 'Doe');  -- ERROR: duplicate key
+```
+🎯 Primary Key vs Foreign Key:
+Primary Key (PK)	Foreign Key (FK)
+Identifies rows in current table	References PK in another table
+UNIQUE + NOT NULL	Can have duplicates, can be NULL
+Only ONE per table	Can have multiple per table
+Creates clustered index	Creates non-clustered index
+Example relationship:
 
--- Non-null constraint: Every row has a value
-SELECT COUNT(*) as total_customers,
-       COUNT(customer_id) as non_null_ids
-FROM customer;
--- Both counts are equal (no nulls)4. Using Primary Keys for Data Retrievalsql-- Find specific customer by primary key (fastest lookup)
-SELECT first_name, last_name, email
-FROM customer
-WHERE customer_id = 15;
+```sql
+-- actor.actor_id is PRIMARY KEY
+-- film_actor.actor_id is FOREIGN KEY referencing actor.actor_id
+SELECT * FROM film_actor WHERE actor_id = 1;
+```
+🚀 Best Practices:
+Use meaningful names: pk_table_name for constraints
 
--- Primary keys make searches efficient
-SELECT customer_id, first_name, last_name
-FROM customer
-ORDER BY customer_id;5. Primary Keys in Different Tablessql-- Payment table with payment_id as primary key
-SELECT payment_id, customer_id, amount, payment_date
-FROM payment
-LIMIT 5;
--- payment_id: 1, 2, 3, 4, 5 (each payment has unique ID)
+Keep it simple: Use single column PK when possible
 
--- Film table with film_id as primary key
-SELECT film_id, title, rental_rate
-FROM film
-LIMIT 5;
--- film_id: 1, 2, 3, 4, 5 (each film has unique ID)
+Use surrogate keys: Auto-incrementing integers (1, 2, 3...)
 
--- Staff table with staff_id as primary key
-SELECT staff_id, first_name, last_name
-FROM staff;
--- staff_id: 1, 2 (each staff member has unique ID)6. Viewing Primary Keys in PgAdminsql-- Any SELECT query will show PK indicator in PgAdmin
-SELECT * FROM customer LIMIT 3;
--- Look for the column marked with "PK" label
+Avoid business data: Don't use email, phone as PK (they can change)
 
--- Check table structure programmatically
-SELECT column_name, data_type
-FROM information_schema.columns
-WHERE table_name = 'customer' AND column_name = 'customer_id';
+Always declare PK: Every table should have one
+
+Good Primary Keys:
+user_id (INT, auto-increment)
+
+product_id (UUID for distributed systems)
+
+order_id (BIGINT for large systems)
+
+Bad Primary Keys:
+email (can change, too long)
+
+phone_number (can change, not always unique)
+
+first_name (not unique)
+
+📊 Common Primary Key Types:
+1. Auto-increment (SERIAL)
+```sql
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,  -- Auto: 1, 2, 3...
+    username VARCHAR(50)
+);
+```
+2. UUID (Universally Unique)
+```sql
+CREATE TABLE sessions (
+    session_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id INT
+);
+```
+3. Composite Key
+```sql
+CREATE TABLE grades (
+    student_id INT,
+    course_id INT,
+    grade CHAR(2),
+    PRIMARY KEY (student_id, course_id)
+);
+```
+4. Natural Key (rarely used)
+```sql
+CREATE TABLE countries (
+    country_code CHAR(3) PRIMARY KEY,  -- Like 'USA', 'TUR'
+    country_name VARCHAR(100)
+);

@@ -4,13 +4,21 @@ A column in one table that references another table's Primary Key
 
 Creates relationships between tables
 
-📊 PK vs FK:
-Primary Key	Foreign Key
-actor.actor_id	film_actor.actor_id
-Unique	Can have duplicates
-Cannot be NULL	Can be NULL
-Only ONE per table	Multiple allowed per table
-Identifies rows in its own table	References rows in another table
+## Primary Key vs Foreign Key:
+
+| Primary Key (PK) | Foreign Key (FK) |
+|-----------------|------------------|
+| Identifies rows in **current** table | References PK in **another** table |
+| **UNIQUE + NOT NULL** | Can have duplicates, can be NULL |
+| Only **ONE per table** | Can have **multiple** per table |
+| Creates **clustered index** | Creates **non-clustered index** |
+| `actor.actor_id` | `film_actor.actor_id` |
+
+**Example relationship:**
+```sql
+-- actor.actor_id is PRIMARY KEY
+-- film_actor.actor_id is FOREIGN KEY referencing actor.actor_id
+SELECT * FROM film_actor WHERE actor_id = 1;
 🔍 Examples from Sakila:
 ```sql
 -- film_actor has TWO foreign keys

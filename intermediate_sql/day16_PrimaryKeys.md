@@ -138,11 +138,11 @@ INSERT INTO actor (actor_id, first_name, last_name)
 VALUES (1, 'John', 'Doe');  -- ERROR: duplicate key
 ```
 🎯 Primary Key vs Foreign Key:
-Primary Key (PK)	Foreign Key (FK)
+Primary Key (PK)	                Foreign Key (FK)
 Identifies rows in current table	References PK in another table
-UNIQUE + NOT NULL	Can have duplicates, can be NULL
-Only ONE per table	Can have multiple per table
-Creates clustered index	Creates non-clustered index
+UNIQUE + NOT NULL	                Can have duplicates, can be NULL
+Only ONE per table	                Can have multiple per table
+Creates clustered index         	Creates non-clustered index
 Example relationship:
 
 ```sql

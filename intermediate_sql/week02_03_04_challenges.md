@@ -131,6 +131,57 @@ INNER JOIN cd.members ON
 cd.members.memid = cd.bookings.memid 
 WHERE cd.members.firstname='David' 
 AND cd.members.surname='Farrell';
+```
+## -QUESTION 16-
+ I have customer data in spreadsheets and need to store it in a database. How do I create a structured table?
+ ```sql
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(250) UNIQUE NOT NULL,
+    phone VARCHAR(20),
+    registration_date TIMESTAMP NOT NULL
+);
+```
+## -QUESTION 17-
+ Every time I add a new product, I have to remember the last ID number. How can I automate this?
+ ```sql 
+ CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    stock_quantity INTEGER NOT NULL,
+    category VARCHAR(50)
+);
+
+-- When inserting, SERIAL handles the ID automatically
+INSERT INTO products (product_name, price, stock_quantity, category)
+VALUES ('Laptop', 999.99, 50, 'Electronics');
+
+INSERT INTO products (product_name, price, stock_quantity, category)
+VALUES ('Mouse', 29.99, 200, 'Electronics');
+
+-- Product IDs are automatically: 1, 2, 3, etc.
+```
+## -QUESTION 18-
+I have an orders table and a customers table. How do I connect each order to a specific customer?
+```sql
+-- First, create the parent table (customers)
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(250) UNIQUE NOT NULL
+);
+
+-- Then create the child table (orders) with foreign key
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INTEGER REFERENCES customers(customer_id),
+    order_date TIMESTAMP NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    status VARCHAR(20) NOT NULL
+);
 
 
 

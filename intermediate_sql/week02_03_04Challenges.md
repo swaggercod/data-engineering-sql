@@ -182,6 +182,68 @@ CREATE TABLE orders (
     total_amount DECIMAL(10,2) NOT NULL,
     status VARCHAR(20) NOT NULL
 );
+```
+## -QUESTION 19-
+I just got a new customer registration. How do I add their information to the customers table?
+```sql
+-- Single customer insert
+INSERT INTO customers (first_name, last_name, email, phone, registration_date)
+VALUES ('Sarah', 'Johnson', 'sarah.j@email.com', '555-0123', CURRENT_TIMESTAMP);
+
+-- Insert and see what was added
+INSERT INTO customers (first_name, last_name, email, phone, registration_date)
+VALUES ('Mike', 'Chen', 'mike.chen@email.com', '555-0456', CURRENT_TIMESTAMP)
+RETURNING *;
+```
+## -QUESTION 20-
+My table has a SERIAL ID column. Do I have to calculate the next ID number myself?
+```sql
+-- Correct way (let SERIAL handle product_id):
+INSERT INTO products (product_name, price, stock_quantity, category)
+VALUES ('Laptop', 999.99, 25, 'Electronics');
+
+INSERT INTO products (product_name, price, stock_quantity, category)
+VALUES ('Wireless Mouse', 29.99, 150, 'Electronics');
+
+INSERT INTO products (product_name, price, stock_quantity, category)
+VALUES ('USB Cable', 9.99, 300, 'Accessories');
+
+-- product_id will be 1, 2, 3 automatically
+```
+## -QUESTION 21-
+I have 10 new employees to add. Do I need to run INSERT 10 times?
+```sql
+-- No! Insert multiple rows in one command
+INSERT INTO employees (first_name, last_name, email, hire_date, salary, department)
+VALUES 
+    ('John', 'Smith', 'john.s@company.com', '2024-01-15', 75000, 'Engineering'),
+    ('Emma', 'Wilson', 'emma.w@company.com', '2024-01-15', 68000, 'Marketing'),
+    ('David', 'Brown', 'david.b@company.com', '2024-01-16', 82000, 'Engineering'),
+    ('Lisa', 'Davis', 'lisa.d@company.com', '2024-01-16', 71000, 'Sales'),
+    ('James', 'Miller', 'james.m@company.com', '2024-01-17', 65000, 'HR'); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -133,10 +133,12 @@ WITH new_customer AS (
 INSERT INTO orders (customer_id, amount)
 SELECT customer_id, 100.00 FROM new_customer;
 ```
-📊 Quick Reference:
-Scenario	Syntax
-Single row	INSERT INTO table (col1, col2) VALUES (val1, val2)
-Multiple rows	INSERT INTO table VALUES (val1), (val2), (val3)
-With SELECT	INSERT INTO table SELECT * FROM other_table
-Return ID	INSERT ... RETURNING id
-Upsert	INSERT ... ON CONFLICT DO UPDATE
+## 📊 Quick Reference:
+
+| Scenario | Syntax |
+|----------|--------|
+| Single row | `INSERT INTO table (col1, col2) VALUES (val1, val2)` |
+| Multiple rows | `INSERT INTO table VALUES (val1), (val2), (val3)` |
+| With SELECT | `INSERT INTO table SELECT * FROM other_table` |
+| Return ID | `INSERT ... RETURNING id` |
+| Upsert | `INSERT ... ON CONFLICT DO UPDATE` |

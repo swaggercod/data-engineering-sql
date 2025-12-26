@@ -94,22 +94,40 @@ ALTER COLUMN email SET NOT NULL;
 ALTER TABLE customers
 ALTER COLUMN email DROP NOT NULL;
 ```
-🎯 Quick Reference:
-Constraint	Purpose	Example
-NOT NULL	No empty values	name VARCHAR(100) NOT NULL
-UNIQUE	All values different	email VARCHAR(100) UNIQUE
-PRIMARY KEY	Unique row identifier	id INT PRIMARY KEY
-FOREIGN KEY	Links tables	FOREIGN KEY (user_id) REFERENCES users(id)
-CHECK	Validates data	age INT CHECK (age >= 18)
-DEFAULT	Sets default value	created_at TIMESTAMP DEFAULT NOW()
-📊 Why Constraints Matter:
-Data Integrity - Ensures accurate, reliable data
+# SQL Constraints Quick Reference
 
-Prevents Invalid Data - Stops bad data at the database level
+| Constraint | Purpose | Example |
+|------------|---------|---------|
+| **NOT NULL** | No empty values | `name VARCHAR(100) NOT NULL` |
+| **UNIQUE** | All values different | `email VARCHAR(100) UNIQUE` |
+| **PRIMARY KEY** | Unique row identifier | `id INT PRIMARY KEY` |
+| **FOREIGN KEY** | Links tables | `FOREIGN KEY (user_id) REFERENCES users(id)` |
+| **CHECK** | Validates data | `age INT CHECK (age >= 18)` |
+| **DEFAULT** | Sets default value | `created_at TIMESTAMP DEFAULT NOW()` |
 
-Documentation - Shows rules directly in schema
+---
 
-Performance - Some constraints (like PK) improve query speed
+## **Why Constraints Matter:**
+
+✅ **Data Integrity** - Ensures accurate, reliable data  
+✅ **Prevents Invalid Data** - Stops bad data at the database level  
+✅ **Documentation** - Shows rules directly in schema  
+✅ **Performance** - Some constraints (like PK) improve query speed  
+
+---
+
+## **Common Errors & Solutions:**
+
+```sql
+-- ERROR: duplicate key value violates unique constraint
+INSERT INTO users (email) VALUES ('test@email.com');
+INSERT INTO users (email) VALUES ('test@email.com');  -- ERROR!
+
+-- ERROR: null value violates not-null constraint
+INSERT INTO users (name) VALUES (NULL);  -- ERROR!
+
+-- ERROR: check constraint violation
+INSERT INTO employees (age) VALUES (16);  -- ERROR if CHECK (age >= 18)
 ```
 ⚠️ Common Errors & Solutions:
 ```sql

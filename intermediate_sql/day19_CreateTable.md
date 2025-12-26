@@ -1,5 +1,5 @@
-Day 19 — CREATE TABLE
-📌 What I Learned Today
+# Day 19 — CREATE TABLE
+## 📌 What I Learned Today
 Today I learned how to create tables in SQL using the CREATE TABLE statement. This is fundamental for setting up database structure.
 
 ✅ Basic CREATE TABLE Syntax:

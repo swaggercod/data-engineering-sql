@@ -13,7 +13,7 @@ Precision control for decimal calculations
 
 📖 Examples
 1. Basic Arithmetic Operators
-sql
+```sql
 -- Basic calculations
 SELECT 
     10 + 5 AS addition,
@@ -33,6 +33,7 @@ SELECT
     rental_rate + 2.00 AS rate_with_fee
 FROM film
 LIMIT 10;
+```
 2. Rounding Functions
 ```sql
 -- Different rounding methods

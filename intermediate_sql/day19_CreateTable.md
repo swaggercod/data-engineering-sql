@@ -56,16 +56,18 @@ CREATE TABLE enrollments (
 CREATE TABLE customers_backup AS 
 SELECT * FROM customers WHERE 1=0;  -- Only copies structure, no data
 ```
-💡 Common Data Types:
-Data Type	Description	Example
-INT / SERIAL	Integer / Auto-increment	user_id SERIAL PRIMARY KEY
-VARCHAR(n)	Variable-length string	name VARCHAR(100)
-TEXT	Long text	description TEXT
-BOOLEAN	True/False	is_active BOOLEAN DEFAULT true
-DATE	Date only	birth_date DATE
-TIMESTAMP	Date and time	created_at TIMESTAMP
-DECIMAL(p,s)	Exact numeric	price DECIMAL(10,2)
-JSON / JSONB	JSON data	preferences JSONB
+## 🔍 Common Data Types:
+
+| Data Type | Description | Example |
+|-----------|-------------|---------|
+| `INT` / `SERIAL` | Integer / Auto-increment | `user_id SERIAL PRIMARY KEY` |
+| `VARCHAR(n)` | Variable-length string | `name VARCHAR(100)` |
+| `TEXT` | Long text | `description TEXT` |
+| `BOOLEAN` | True/False | `is_active BOOLEAN DEFAULT true` |
+| `DATE` | Date only | `birth_date DATE` |
+| `TIMESTAMP` | Date and time | `created_at TIMESTAMP` |
+| `DECIMAL(p,s)` | Exact numeric | `price DECIMAL(10,2)` |
+| `JSON` / `JSONB` | JSON data | `preferences JSONB` |
 🔧 Table Modifications:
 1. Add Column
 ```sql

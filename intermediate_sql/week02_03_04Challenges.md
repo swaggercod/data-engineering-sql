@@ -249,7 +249,24 @@ SET phone = '555-9999'
 WHERE customer_id = 10;
 -- Only customer 10's phone is updated
 ```
+## -QUESTION 24-
+Everyone in the Engineering department gets a 10% raise. How do I update them all?
+```SQL
+-- Update all engineers' salaries
+UPDATE employees
+SET salary = salary * 1.10
+WHERE department = 'Engineering';
 
+-- Or increase by fixed amount
+UPDATE employees
+SET salary = salary + 5000
+WHERE department = 'Sales';
+
+-- View updated salaries
+SELECT first_name, last_name, department, salary
+FROM employees
+WHERE department = 'Engineering';
+```
 
 
 

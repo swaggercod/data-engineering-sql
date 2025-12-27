@@ -222,7 +222,33 @@ VALUES
     ('Lisa', 'Davis', 'lisa.d@company.com', '2024-01-16', 71000, 'Sales'),
     ('James', 'Miller', 'james.m@company.com', '2024-01-17', 65000, 'HR'); 
 ```
+## -QUESTION 22-
+Customer ID 5 changed their email. How do I update just their record?
+```SQL
+-- Update single customer's email
+UPDATE customers
+SET email = 'newemail@example.com'
+WHERE customer_id = 5;
 
+-- View the change
+SELECT customer_id, first_name, email
+FROM customers
+WHERE customer_id = 5;
+```
+## -QUESTION 23-
+I want to update one customer's phone number. What if I forget WHERE?
+```SQL
+-- DANGER! This updates ALL customers (wrong!)
+UPDATE customers
+SET phone = '555-9999';
+-- Every customer now has the same phone number!
+
+-- CORRECT: Use WHERE to target specific customer
+UPDATE customers
+SET phone = '555-9999'
+WHERE customer_id = 10;
+-- Only customer 10's phone is updated
+```
 
 
 

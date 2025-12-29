@@ -267,6 +267,36 @@ SELECT first_name, last_name, department, salary
 FROM employees
 WHERE department = 'Engineering';
 ```
+## -QUESTION 25-
+ How to delete duplicate emails but keep one?
+ ```SQL
+-- Keep the oldest record (smallest ID)
+DELETE FROM users u1
+WHERE EXISTS (
+    SELECT 1 FROM users u2
+    WHERE u2.email = u1.email
+    AND u2.id < u1.id  -- Keep smaller ID
+);
+
+-- Or keep the newest (largest ID)
+DELETE FROM users u1
+WHERE EXISTS (
+    SELECT 1 FROM users u2
+    WHERE u2.email = u1.email
+    AND u2.id > u1.id  -- Keep larger ID
+);
+```
+## -QUESTION 26-
+How to safely delete test/development data?
+```SQL
+DELETE FROM users
+WHERE email LIKE '%test%'
+   OR email LIKE '%@example.com'
+   OR username LIKE 'test_%';
+```
+
+
+
 
 
 

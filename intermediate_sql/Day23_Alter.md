@@ -228,14 +228,15 @@ COMMENT ON COLUMN salary IS 'Annual salary in USD';
 -- Reset auto-increment counter
 ALTER SEQUENCE users_id_seq RESTART WITH 1000;
 ```
-# 📊 Quick Reference:
-|Action|	|Syntax|
-|----------|------------|
-|Add column|	'ALTER TABLE table ADD COLUMN col TYPE'|
-|Drop column|	'ALTER TABLE table DROP COLUMN col'|
-|Rename column|	'ALTER TABLE table RENAME COLUMN old TO new'|
-|Change type|	'ALTER TABLE table ALTER COLUMN col TYPE new_type'|
-|Add constraint|	'ALTER TABLE table ADD CONSTRAINT name ...'|
-|Drop constraint|	'ALTER TABLE table DROP CONSTRAINT name'|
-|Set default|	'ALTER TABLE table ALTER COLUMN col SET DEFAULT value'|
-|Drop default|	'ALTER TABLE table ALTER COLUMN col DROP DEFAULT'|
+## 📊 Quick Reference:
+
+| Action | Syntax |
+|--------|--------|
+| Add column | `ALTER TABLE table ADD COLUMN col TYPE` |
+| Drop column | `ALTER TABLE table DROP COLUMN col` |
+| Rename column | `ALTER TABLE table RENAME COLUMN old TO new` |
+| Change type | `ALTER TABLE table ALTER COLUMN col TYPE new_type` |
+| Add constraint | `ALTER TABLE table ADD CONSTRAINT name ...` |
+| Drop constraint | `ALTER TABLE table DROP CONSTRAINT name` |
+| Set default | `ALTER TABLE table ALTER COLUMN col SET DEFAULT value` |
+| Drop default | `ALTER TABLE table ALTER COLUMN col DROP DEFAULT` |

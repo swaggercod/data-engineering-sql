@@ -70,16 +70,13 @@ BEGIN
     END LOOP;
 END $$;
 ```
-⚠️ Safety Best Practices
-ALWAYS backup before DROP operations
+# ⚠️ Safety Best Practices
 
-Use IF EXISTS to avoid errors
-
-Test in development before production
-
-Consider CASCADE for dependencies
-
-Use CONCURRENTLY for indexes to avoid locks
+**ALWAYS backup before DROP operations**  
+**Use IF EXISTS to avoid errors**  
+**Test in development before production**  
+**Consider CASCADE for dependencies**  
+**Use CONCURRENTLY for indexes to avoid locks**
 
 🔄 Common Patterns
 ```sql

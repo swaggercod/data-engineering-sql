@@ -83,7 +83,7 @@ CREATE TABLE bank_accounts (
     )
 );
 ```
-⚠️ Important Notes
+## ⚠️ Important Notes
 CHECK constraints run for every INSERT and UPDATE
 
 NULL values usually pass CHECK constraints (unless you add NOT NULL)
@@ -99,7 +99,7 @@ CREATE TABLE example (
     CONSTRAINT value_check CHECK (value > 0)
 );
 ```
-💡 When to Use CHECK Constraints
+## 💡 When to Use CHECK Constraints
 Validate number ranges (age, price, score)
 
 Ensure dates are logical

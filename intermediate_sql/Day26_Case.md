@@ -85,9 +85,11 @@ SELECT
 FROM customer;
 ```
 ## 📊 Quick Reference:
-Use Case	Syntax
-Simple comparison	CASE column WHEN value THEN result END
-Multiple conditions	CASE WHEN cond1 THEN res1 WHEN cond2 THEN res2 END
-With ELSE	CASE WHEN cond THEN res ELSE default END
-In SELECT	SELECT CASE WHEN ... END AS alias
-In ORDER BY	ORDER BY CASE WHEN ... END
+
+| Use Case | Syntax |
+|----------|--------|
+| Simple comparison | `CASE column WHEN value THEN result END` |
+| Multiple conditions | `CASE WHEN cond1 THEN res1 WHEN cond2 THEN res2 END` |
+| With ELSE | `CASE WHEN cond THEN res ELSE default END` |
+| In SELECT | `SELECT CASE WHEN ... END AS alias` |
+| In ORDER BY | `ORDER BY CASE WHEN ... END` |

@@ -294,6 +294,49 @@ WHERE email LIKE '%test%'
    OR email LIKE '%@example.com'
    OR username LIKE 'test_%';
 ```
+## -QUESTION 27-
+How to change a column's data type?
+```sql
+-- Change age from VARCHAR to INTEGER
+ALTER TABLE customers 
+ALTER COLUMN age TYPE INTEGER 
+USING age::INTEGER;
+```
+## -QUESTION 28-
+How to add a NOT NULL constraint?
+```SQL
+-- Make email required
+ALTER TABLE users 
+ALTER COLUMN email SET NOT NULL;
+```
+## -QUESTION 29-
+How to add a default value to a column?
+```SQL
+-- Set default status to 'active'
+ALTER TABLE users 
+ALTER COLUMN status SET DEFAULT 'active';
+```
+## -QUESTION 30-
+How to delete a table?
+```SQL
+-- Delete products table
+DROP TABLE products;
+
+-- Safer: Only delete if exists
+DROP TABLE IF EXISTS products;
+```
+## -QUESTION 31-
+How to delete a column?
+```SQL
+-- Remove phone_number column
+ALTER TABLE users 
+DROP COLUMN phone_number;
+
+-- Safer: Only drop if exists
+ALTER TABLE users 
+DROP COLUMN IF EXISTS phone_number;
+```
+ 
 
 
 

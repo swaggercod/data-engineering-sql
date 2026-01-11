@@ -336,6 +336,59 @@ DROP COLUMN phone_number;
 ALTER TABLE users 
 DROP COLUMN IF EXISTS phone_number;
 ```
+## -QUESTION 32-
+How to ensure product prices are never negative?
+```sql
+-- When creating table
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    price DECIMAL(10,2) CHECK (price >= 0)
+);
+
+-- Or add to existing table
+ALTER TABLE products
+ADD CONSTRAINT price_positive 
+CHECK (price >= 0);
+```
+## -QUESTION 33-
+How to validate email format?
+```sql
+-- Basic email validation (must contain @ and .)
+ALTER TABLE users
+ADD CONSTRAINT valid_email
+CHECK (email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$');
+```
+## -QUESTION 34-
+How to categorize students by their scores?
+```sql
+SELECT 
+    student_name,
+    score,
+    CASE 
+        WHEN score >= 90 THEN 'A'
+        WHEN score >= 80 THEN 'B'
+        WHEN score >= 70 THEN 'C'
+        WHEN score >= 60 THEN 'D'
+        ELSE 'F'
+    END AS grade
+FROM students;
+```
+## -QUESTION 35-
+How to show "Active" or "Inactive" instead of 1/0?
+```sql
+SELECT 
+    user_id,
+    username,
+    CASE is_active
+        WHEN 1 THEN 'Active'
+        WHEN 0 THEN 'Inactive'
+        ELSE 'Unknown'
+    END AS status
+FROM users;
+```
+
+
  
 
 
